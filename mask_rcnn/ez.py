@@ -28,6 +28,8 @@ class_names = ['BG', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
        'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
        'teddy bear', 'hair drier', 'toothbrush']
 
+class_colors = visualize.random_colors(len(class_names))
+
 class InferenceConfig(coco.CocoConfig):
     GPU_COUNT = 1
     IMAGES_PER_GPU = 1
@@ -59,7 +61,7 @@ class EZ():
         output_image = None
         if merge_image:
             output_image = visualize.get_displayed_instances(sample_image, r['rois'],
-                            r['masks'], r['class_ids'], class_names, r['scores'])
+                            r['masks'], r['class_ids'], class_names, r['scores'], class_colors)
         info = {
             'masks': r['masks'],
             'class_ids': r['class_ids'],
