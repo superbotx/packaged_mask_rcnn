@@ -48,6 +48,7 @@ class EZ():
         self.model = modellib.MaskRCNN(mode="inference", model_dir=self.MODEL_DIR, config=self.config)
         self.model.load_weights(self.COCO_MODEL_PATH, by_name=True)
         self.class_names = class_names
+        self.class_colors = class_colors
 
     def detect(self, image_input, merge_image=True):
         sample_image = image_input
@@ -61,7 +62,7 @@ class EZ():
         output_image = None
         if merge_image:
             output_image = visualize.get_displayed_instances(sample_image, r['rois'],
-                            r['masks'], r['class_ids'], class_names, r['scores'], class_colors)
+                            r['masks'], r['class_ids'], class_names, r['scores'], class_colors=elf.class_colors)
         info = {
             'masks': r['masks'],
             'class_ids': r['class_ids'],
