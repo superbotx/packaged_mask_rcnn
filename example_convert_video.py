@@ -3,10 +3,10 @@ import imageio
 from mask_rcnn.ez import EZ
 
 imageio.plugins.ffmpeg.download()
-filename = 'sample_images/sample_video1.mp4'
+filename = 'sample_images/sample_video2.mp4'
 video = imageio.get_reader(filename)
 meta = video.get_meta_data()
-skip = 5
+skip = 1
 fps = meta['fps'] // skip
 f_cnt = meta['nframes'] // skip
 writer = imageio.get_writer('output.mp4', fps=fps)
