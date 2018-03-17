@@ -4,6 +4,10 @@ version: dev
 
 Packaged Mask Rcnn code for easier access
 
+## Usage
+
+Copy mask_rcnn folder to project and use it as module
+
 ## Examples
 
 ### simple usecase
