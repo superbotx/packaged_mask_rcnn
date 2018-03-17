@@ -28,8 +28,6 @@ class_names = ['BG', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
        'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
        'teddy bear', 'hair drier', 'toothbrush']
 
-class_colors = visualize.random_colors(len(class_names))
-
 class InferenceConfig(coco.CocoConfig):
     GPU_COUNT = 1
     IMAGES_PER_GPU = 1
@@ -48,7 +46,7 @@ class EZ():
         self.model = modellib.MaskRCNN(mode="inference", model_dir=self.MODEL_DIR, config=self.config)
         self.model.load_weights(self.COCO_MODEL_PATH, by_name=True)
         self.class_names = class_names
-        self.class_colors = class_colors
+        self.class_colors = visualize.random_colors(len(self.class_names))
 
     def detect(self, image_input, merge_image=True):
         sample_image = image_input

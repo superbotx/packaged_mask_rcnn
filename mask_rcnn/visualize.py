@@ -173,7 +173,7 @@ def get_displayed_instances(image, boxes, masks, class_ids, class_names,
     # Generate random colors
     colors = class_colors
     if len(class_colors) == 0:
-        colors = random_colors(N)
+        colors = random_colors(len(class_names))
 
     # Show area outside image boundaries.
     height, width = image.shape[:2]
@@ -184,7 +184,8 @@ def get_displayed_instances(image, boxes, masks, class_ids, class_names,
 
     masked_image = image.astype(np.uint32).copy()
     for i in range(N):
-        color = colors[i]
+        class_id = class_ids[i]
+        color = colors[class_id]
 
         # Bounding box
         if not np.any(boxes[i]):
@@ -197,7 +198,6 @@ def get_displayed_instances(image, boxes, masks, class_ids, class_names,
         ax.add_patch(p)
 
         # Label
-        class_id = class_ids[i]
         score = scores[i] if scores is not None else None
         label = class_names[class_id]
         x = random.randint(x1, (x1 + x2) // 2)
