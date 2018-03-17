@@ -51,9 +51,6 @@ class EZ():
         sample_image = image_input
         if type(image_input) is str:
             sample_image = skimage.io.imread(image_input)
-        if type(sample_image) is not np.ndarray:
-            print('Error: input should be either path to image or image array')
-            return None
         if len(sample_image.shape) != 3 or sample_image.shape[2] != 3:
             print('Error: image shoud have dimension (W, H, 3)')
             return None
