@@ -62,7 +62,7 @@ class EZ():
         output_image = None
         if merge_image:
             output_image = visualize.get_displayed_instances(sample_image, r['rois'],
-                            r['masks'], r['class_ids'], class_names, r['scores'], class_colors=elf.class_colors)
+                            r['masks'], r['class_ids'], class_names, r['scores'], class_colors=self.class_colors)
         info = {
             'masks': r['masks'],
             'class_ids': r['class_ids'],
