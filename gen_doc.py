@@ -35,7 +35,7 @@ def gen_intro():
     contents.append('version: ' + PROJECT_VERSION + '\n\n')
     contents.append(PROJECT_DESCRIPTION + '\n\n')
     contents.append('## Usage\n\n')
-    contents.append(PROJECT_USAGE + '\n\n')
+    contents.extend(PROJECT_USAGE)
     return contents
 
 def main():

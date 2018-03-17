@@ -8,6 +8,10 @@ Packaged Mask Rcnn code for easier access
 
 Copy mask_rcnn folder to project and use it as module
 
+You will need to install pycocotools and tensorflow
+
+Other requirements you can refer to `requirements.txt`
+
 ## Examples
 
 ### simple usecase
