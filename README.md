@@ -14,6 +14,75 @@ Other requirements you can refer to `requirements.txt`
 
 ## Examples
 
+### convert image
+
+```python
+
+import numpy as np
+import skimage.io
+from mask_rcnn.ez import EZ
+
+ez = EZ()
+
+image_filename = 'sample_images/sample2.jpg'
+sample_image_input = skimage.io.imread(image_filename)
+sample1_result, info = ez.detect(sample_image_input)
+skimage.io.imsave('output_image.jpg', sample1_result)
+```
+
+### convert video
+
+```python
+
+import numpy as np
+import imageio
+from mask_rcnn.ez import EZ
+
+imageio.plugins.ffmpeg.download()
+filename = 'sample_images/sample_video1.MOV'
+video = imageio.get_reader(filename)
+meta = video.get_meta_data()
+skip = 1
+size = 5
+fps = meta['fps'] // skip
+f_cnt = meta['nframes'] // skip
+writer = imageio.get_writer('output.mp4', fps=fps)
+
+ez = EZ()
+
+cnt = 0
+for i, img in enumerate(video):
+    if i % skip == 0:
+        print(str(i // skip), '/', f_cnt)
+        cnt += 1
+        if cnt == size:
+            break
+        result, info = ez.detect(img)
+        writer.append_data(result)
+
+writer.close()
+```
+
+### from webcam
+
+```python
+
+import imageio
+import visvis as vv
+from mask_rcnn.ez import EZ
+
+ez = EZ()
+
+reader = imageio.get_reader('<video0>')
+init_img = reader.get_next_data()
+init_out, info = ez.detect(init_img)
+t = vv.imshow(init_out, clim=(0, 255))
+for im in reader:
+    vv.processEvents()
+    current_out, current_info = ez.detect(im)
+    t.SetData(current_out)
+```
+
 ### simple usecase
 
 ```python
