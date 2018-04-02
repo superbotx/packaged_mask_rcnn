@@ -48,6 +48,33 @@ class EZ():
         self.class_names = class_names
         self.class_colors = visualize.random_colors(len(self.class_names))
 
+    def serve(self, service_name):
+        """
+        description: this function will start this vision
+        system as a ros node, listen to channels and serve
+        results by calling self.detect method.
+
+        input:
+            service_name: a string name given to the servive
+
+        output:
+            none (this function will run forever)
+        """
+        pass
+
+    def req_handler(self, req):
+        """
+        description: this function is a thin wrapper around
+        self.detect and will be used in self.serve
+
+        inputs:
+            req: the request object
+
+        outputs:
+            res: response to the request
+        """
+        pass
+
     def detect(self, image_input, merge_image=True):
         sample_image = image_input
         if type(image_input) is str:
